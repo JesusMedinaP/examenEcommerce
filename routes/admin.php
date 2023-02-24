@@ -21,6 +21,8 @@ Route::get('/', ShowProducts::class)->name('admin.index');
 
 Route::get('/productos2', ShowProducts2::class)->name('admin.index2');
 
+Route::get('/productos2/{category}', [ShowProducts2::class])->name('admin.index2');
+
 
 Route::get('products/{product}/edit', EditProduct::class)->name('admin.products.edit');
 

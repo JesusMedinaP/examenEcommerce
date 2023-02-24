@@ -12,15 +12,7 @@
 
     <x-table-responsive>
 
-        <div class="px-6 py-4">
-            <x-jet-input class="w-full"
-                         wire:model="search"
-                         type="text"
-                         placeholder="Introduzca el nombre del producto a buscar">
-            </x-jet-input>
-        </div>
-
-        <x-jet-label value="Paginación"></x-jet-label>
+        <x-jet-label value="Paginación" class=""></x-jet-label>
         <select class="w-full form-control" wire:model="pagination">
             <option value="5">5</option>
             <option value="10">10</option>
@@ -30,20 +22,73 @@
             <option value="100">100</option>
         </select>
 
+        <div class="px-6 py-4">
+            <x-jet-input class="w-full"
+                         wire:model="search"
+                         type="text"
+                         placeholder="Introduzca el nombre del producto a buscar">
+            </x-jet-input>
+        </div>
 
-        @if($products->count())
+
+{{--        <x-jet-label value="Filtros"></x-jet-label>--}}
+{{--        <x-jet-input wire:model="options" type="checkbox" placeholder="Filtrar los elementos mostrados">--}}
+{{--            @foreach($options as $option)--}}
+{{--                <input type="checkbox" id="{{$option}}">{{$option}}</label><br>--}}
+{{--            @endforeach--}}
+{{--        </x-jet-input>--}}
+{{--        <label><input type="checkbox" id="category">Categorías</label><br>--}}
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <aside>
+            <h2 class="font-semibold text-center mb-2">Categorías</h2>
+            <ul class="divide-y divide-gray-200">
+                @foreach($categories as $category)
+                    <li class="py-2 text-sm ">
+                        <a class="cursor-pointer hover:text-orange-500 capitalize
+                        {{ $categoria == $category->slug ? 'text-orange-500 font-semibold' : '' }}"
+                           wire:click="$set('subcategoria', '{{ $category->slug }}')">
+                            {{ $category->name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </aside>
+
+        <aside>
+            <h2 class="font-semibold text-center mt-4 mb-2">Marcas</h2>
+            <ul class="divide-y divide-gray-200">
+                @foreach($brands as $brand)
+                    <li class="py-2 text-sm">
+                        <a class="cursor-pointer hover:text-orange-500 capitalize"
+                           {{ $marca == $brand->name ? 'text-orange-500 font-semibold' : ''}}
+                           wire:click="$set('marca', '{{ $brand->name }}')">
+                            {{ $brand->name }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+
+            <x-jet-button class="mt-4" wire:click="limpiar">
+                Eliminar Filtros
+            </x-jet-button>
+
+        </aside>
+        </div>
+
+    @if($products->count())
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Nombre
+                        <a href="">Nombre</a>
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Categoría
+                        <a href="">Categoría</a>
                     </th>
 
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Marca
+                        <a href="">Marca</a>
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Vendidos
@@ -59,7 +104,7 @@
                         Estado
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Precio
+                        <a href="">Precio</a>
                     </th>
 
                     <th scope="col" class="relative px-6 py-3">
