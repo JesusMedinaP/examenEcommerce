@@ -43,15 +43,15 @@
         <aside>
             <h2 class="font-semibold text-center mb-2">Categorías</h2>
             <ul class="divide-y divide-gray-200">
-                @foreach($categories as $category)
-                    <li class="py-2 text-sm ">
-                        <a class="cursor-pointer hover:text-orange-500 capitalize
-                        {{ $categoria == $category->slug ? 'text-orange-500 font-semibold' : '' }}"
-                           wire:click="$set('subcategoria', '{{ $category->slug }}')">
-                            {{ $category->name }}
-                        </a>
-                    </li>
-                @endforeach
+{{--                @foreach($categories as $category)--}}
+{{--                    <li class="py-2 text-sm ">--}}
+{{--                        <a class="cursor-pointer hover:text-orange-500 capitalize--}}
+{{--                        {{ $categoria == $category->slug ? 'text-orange-500 font-semibold' : '' }}"--}}
+{{--                           wire:click="$set('subcategoria', '{{ $category->slug }}')">--}}
+{{--                            {{ $category->name }}--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endforeach--}}
             </ul>
         </aside>
 
