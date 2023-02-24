@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,6 +14,8 @@ class ShowProducts2 extends Component
 
     public $search;
     public $pagination = 10;
+    public $brands, $categories;
+
 
     public function updatingSearch()
     {
@@ -27,6 +31,7 @@ class ShowProducts2 extends Component
     {
         $pagination = $this->pagination;
         $products = Product::where('name', 'LIKE', "%{$this->search}%")->paginate($pagination);
+
 
         return view('livewire.admin.show-products2', compact('products', 'pagination'))->layout('layouts.admin');
     }
